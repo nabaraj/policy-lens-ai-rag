@@ -23,12 +23,12 @@ export const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
-export async function insertDocument(file: File) {
+export async function insertDocument(file: File, documentId: string) {
   const { name: fileName } = file;
-  const fileHashId = await generateFileHash(file);
+
   const { data, error } = await supabase
     .from("documents")
-    .insert([{ file_name: fileName, file_hash: fileHashId }])
+    .insert([{ file_name: fileName, file_hash: documentId }])
     .select()
     .single();
 
