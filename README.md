@@ -4,7 +4,7 @@ PolicyLens AI is a domain-focused application that uses Retrieval Augmented Gene
 
 It allows users to upload a policy PDF and ask questions like coverage limits, room rent rules, and exclusions overall related to the uploaded document. The system retrieves only relevant parts of the document and generates answers strictly based on that content.
 
-The goal is simple. Help users understand complex insurance documents without reading everything.
+The goal is simple: Help users understand complex insurance documents without reading everything.
 
 ---
 
@@ -46,41 +46,41 @@ This avoids sending the full document to the model and improves both cost and ac
 
 ## How it Works
 
-1. Upload and Deduplication  
+1. **Upload and Deduplication**  
    A SHA-256 hash is generated for the file. If the same document already exists, processing is skipped.
-2. Text Extraction and Validation  
+2. **Text Extraction and Validation**  
    The PDF is parsed and checked against insurance-related keywords.
-3. Chunking and Embedding  
+3. **Chunking and Embedding**  
    The text is split into chunks and converted into vector embeddings.
-4. Storage  
+4. **Storage**  
    Chunks and embeddings are stored in Supabase using pgvector.
-5. Query Processing  
+5. **Query Processing**  
    User questions are expanded with domain keywords to improve search results.
-6. Retrieval  
+6. **Retrieval**  
    The most relevant chunks are fetched using cosine similarity.
-7. Answer Generation  
+7. **Answer Generation**  
    The LLM generates an answer using only the retrieved context.
 
 ---
 
 ## Tech Stack
 
-###Frontend
+### Frontend
 
 - Next.js
 - TypeScript
 - Tailwind CSS
 
-###Backend
+### Backend
 
 - Next.js API routes
 
-###AI
+### AI
 
 - OpenAI (LLM and embeddings)
 - LangChain (text splitting)
 
-Database
+### Database
 
 - Supabase (PostgreSQL with pgvector)
 
@@ -151,7 +151,7 @@ npm install
 
 Create a `.env.local` file:
 
-```
+```text
 NEXT_PUBLIC_SUPABASE_URL=
 SUPABASE_SERVICE_ROLE_KEY=
 OPENAI_API_KEY=
@@ -170,7 +170,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Project Structure
 
-```
+```text
 app/
   api/
     upload/
@@ -186,7 +186,7 @@ app/
 
 ## Key Challenges Solved
 
-- Avoiding incorrect number extraction (for example 500 vs 500000)
+- Avoiding incorrect number extraction (for example 500 vs 500,000)
 - Preventing hallucination using strict prompts
 - Improving retrieval with query expansion
 - Handling duplicate documents using hashing
@@ -236,10 +236,4 @@ The main value comes from:
 - Clean context
 - Strong prompt control
 
-If any of these fail, the output will be wrong.
-
-That is the core idea behind this project.
-
-```
-
-```
+If any of these fail, the output will be wrong. That is the core idea behind this project.
